@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="术语图鉴 —— 用大白话找准前端、后端、AI、Git 术语" />
+  <meta name="theme-color" content="#3559d8" />
+  <title>术语图鉴 · 用大白话找准那个术语</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%233559d8'/%3E%3Ctext x='24' y='32' font-size='24' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='700'%3E术%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="scenes.css?v=23" />
+  <link rel="stylesheet" href="design-scenes.css?v=23" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="#top" aria-label="回到顶部">
+      <span class="logo-mark" aria-hidden="true">术</span>
+      <span class="logo-text">术语图鉴</span>
+      <span class="logo-count" id="nav-count"></span>
+    </a>
+    <div class="nav-actions">
+      <button id="nav-view" class="nav-link" type="button">知识文章</button>
+      <button id="theme-toggle" class="nav-theme" type="button" title="切换亮 / 暗主题" aria-label="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="catalog-page" id="top">
+    <div id="terms-view">
+      <section class="catalog-finder" id="finder" aria-label="筛选术语">
+        <div class="catalog-finder-row">
+          <div class="finder" role="search">
+            <svg class="finder-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="search" type="search" placeholder="用大白话搜术语…（按 / 聚焦）" autocomplete="off" aria-label="搜索术语" />
+          </div>
+          <nav class="catalog-filter-list" id="domain-chips" aria-label="术语领域"></nav>
+        </div>
+      </section>
+      <div class="catalog-layout">
+        <aside class="catalog-sidebar">
+          <nav class="cat-chips" id="cat-chips" aria-label="当前领域分类"></nav>
+          <div class="sidebar-tip">
+            点术语卡片可查看详情，<br />点右上角 ★ 收藏常用词。
+          </div>
+        </aside>
+
+        <main class="grid-wrap">
+          <header class="catalog-heading" id="catalog-heading"></header>
+          <div id="catalog"></div>
+          <div class="empty-result" id="empty-result" hidden>
+            <div class="empty-art" aria-hidden="true">🔍</div>
+            <p>没找到相关术语，换个说法试试？</p>
+          </div>
+          <footer class="site-footer">
+            <p>本站为个人学习用途的自建术语图鉴：领域与分类结构参考了 <a href="https://vibe-hub.org" target="_blank" rel="noopener">vibe-hub.org</a>，全部释义文案与示意图为本站自行编写绘制。</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <div id="knowledge-view" hidden>
+      <main class="grid-wrap knowledge-wrap">
+        <header class="catalog-heading">
+          <h1>知识文章</h1>
+          <p>12 篇 AI 时代的实用长文，按主题分好组；点卡片到原文阅读，简介为本站撰写。</p>
+        </header>
+        <div id="knowledge-catalog"></div>
+        <footer class="site-footer">
+          <p>文章均来自 <a href="https://book.oiloil.org" target="_blank" rel="noopener">book.oiloil.org</a>，版权归原作者所有；本页仅做导航与索引。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <button id="back-top" class="back-top" type="button" title="返回顶部" aria-label="返回顶部">↑</button>
+
+  <div class="modal-root" id="modal" hidden>
+    <div class="modal-mask" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-close aria-label="关闭">×</button>
+      <div class="modal-kicker" id="modal-kicker"></div>
+      <h2 id="modal-title"></h2>
+      <p class="modal-en" id="modal-en"></p>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-demo" id="modal-demo" aria-hidden="true"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modal-copy" type="button">复制术语</button>
+        <button class="btn" id="modal-fav" type="button">☆ 收藏</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scenes.js?v=23"></script>
+  <script src="scenes-aif.js?v=23"></script>
+  <script src="data.js?v=23"></script>
+  <script src="app.js?v=23"></script>
+</body>
+</html>
